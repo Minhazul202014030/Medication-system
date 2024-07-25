@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Reminders</title>
+</head>
+<body>
+    <h1>Medicine Reminders</h1>
+    {% comment %} {% csrf_token %} {% endcomment %}
+    <ul>
+        {% for reminder in reminders_to_show %}
+            <li>{{ reminder.medicine_name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

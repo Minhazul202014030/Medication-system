@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    margin: 0;
+      
+}
+
+.box-container {
+    display: flex;
+    
+}
+
+.box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    /* max-width: 200px; */
+    /* width: 1000px; */
+    flex: 1;
+    /* max-width: 100%; */
+   
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input,
+button {
+    margin-right: 5px;
+    flex: 1;
+}
+
+input[type="text"] {
+    /* width: calc(50% - 5px); */
+    width: 50px;
+}
+
+button.save,
+button.edit {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+button.edit {
+    background-color: #2196F3;
+}
+
+
+.my-list {
+
+    list-style-type: decimal;
+    /* Specifies the numbering style (decimal, lower-alpha, upper-alpha, lower-roman, upper-roman) */
+    /* Additional CSS properties can be added to customize the list further */
+}

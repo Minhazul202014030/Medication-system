@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Reminders</title>
+    <style>
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .blink-box {
+            animation: blink 1s infinite;
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace; /* Change the font-family to the desired stylish font */
+            text-align: center; /* Center the text horizontally */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medicine Reminders</h1>
+    {% comment %} {% csrf_token %} {% endcomment %}
+    <div id="medicineBox" class="blink-box">
+        <ul id="medicineList">
+            {% for reminder in reminders_to_show %}
+                <li>{{ reminder.medicine_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        function readMedicineNames() {
+            var medicineList = document.getElementById('medicineList');
+            var medicineNames = Array.from(medicineList.getElementsByTagName('li'))
+                .map(li => li.innerText)
+                .join(', ');
+
+            var speech = new SpeechSynthesisUtterance();
+            speech.text = "Here are the medicine names: " + medicineNames;
+
+            window.speechSynthesis.speak(speech);
+        }
+
+        // Read medicine names every 5 seconds for 1 minute
+        var intervalId = setInterval(function() {
+            readMedicineNames();
+        }, 5000);
+
+        // Stop reading and blinking after 1 minute (60000 milliseconds)
+        setTimeout(function() {
+            clearInterval(intervalId);
+            document.getElementById('medicineBox').classList.remove('blink-box');
+            // Reload the page after 1 minute
+            setTimeout(function() {
+                location.reload();
+            }, 60000);
+        }, 60000);
+    </script>
+</body>
+</html>
